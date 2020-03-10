@@ -7,12 +7,12 @@ type NavProps = {
 export default function Nav(props: NavProps) {
     return (
         <div>
-      <nav className="nav-container">
-        <h1 className="nav-item">Recipes App</h1>
-        <div className="nav-item">
-          { props.user.name && <p>Hello, {`${props.user.name}`}</p>}
-        </div>
-      </nav>
+            <nav className="nav-container">
+                <h1 className="nav-item">Recipes App</h1>
+                <div className="nav-item">
+                { props.user.name && <p>Hello, {`${props.user.name}`}</p>}
+                </div>
+            </nav>
         </div>
     )
 }

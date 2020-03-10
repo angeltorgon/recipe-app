@@ -1,17 +1,16 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
+
+// COMPONENTS
+import Nav from './components/Nav';
 
 function App() {
-  const user = "Angel";
+  // const user = "Angel";
+  const user = {name: "Angel"};
 
   return (
     <div className="App">
-      <nav className="nav-container">
-        <h1>Recipes App</h1>
-        <div>
-          <p>Hello, {`${user}`}</p>
-        </div>
-      </nav>
+      <Nav user={user}/>
     </div>
   );
 }

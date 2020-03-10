@@ -1,38 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Login() {
-    const [ usernameInput, setUsernameInput ] = useState("");
+// type LoginProps = {
+//     username: string;
+//     submitHandler: () => void;
+//     onChangeHandler: (e: any) => void;
+// }
 
-    useEffect(() => {
-        setUsernameInput(() => {
-            const username = localStorage.getItem("username"); 
-            if(username) {
-                console.log("logging username - ", username);
-                return username;
-            } else {
-                return ""
-            }
-        })
-    }, []);
-
-    const changeHandler = (e: any) => { 
-        e.preventDefault();
-        setUsernameInput(e.target.value)
-    };
-
-    const submitHandler = (e: any) => { 
-        e.preventDefault();
-        localStorage.setItem("username", usernameInput);
-        console.log("Submitting...")
-    };
+export default function Login(props: any) {
 
     return (
         <div>
             <h2>Create a username!</h2>
-            <h1>{usernameInput}</h1>
-            <form onSubmit={submitHandler}>
+            <h1>{props.username}</h1>
+            <form onSubmit={props.submitHandler}>
                 <div>
-                    <input type="text" name="username" value={usernameInput} onChange={changeHandler} />
+                    <input type="text" value={props.username} onChange={props.changeHandler} />
                     <button type="submit">Enter Recipe App!</button>
                 </div>
             </form>

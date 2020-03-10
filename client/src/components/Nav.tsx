@@ -1,7 +1,7 @@
 import React from 'react'
 
 type NavProps = {
-    user: {name: string}
+    username: string
 }
 
 export default function Nav(props: NavProps) {
@@ -10,7 +10,7 @@ export default function Nav(props: NavProps) {
             <nav className="nav-container">
                 <h1 className="nav-item">Recipes App</h1>
                 <div className="nav-item">
-                { props.user.name && <p>Hello, {`${props.user.name}`}</p>}
+                { props.username && <p>Hello, {`${props.username}`}</p>}
                 </div>
             </nav>
         </div>

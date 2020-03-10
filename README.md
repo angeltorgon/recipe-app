@@ -12,3 +12,15 @@ I created this project using `npm create react-app project-name --typescript`
 3. While still  at the `client` directory, run `npm start` to serve project on `http://localhost:3000`.
 
 ## ABOUT
+This project is a recipe app. When the user gets to the site they will be prompted to input username. Once they input the username then they are redirected to a mini dashboard. They will be able to see a button to add a new recipe. Once they click the `add new recipe button` they will see a modal with a form where they can add a new recipe. Once they fill everything out they can post a new recipe. Once the recipe is posted they will see the post in a card list in their dashboard. As more recipes get added they will appear in the dashboard. If they click a card a modal will pop up with pre-filled form. They will have the options to update or delete the recipe. 
+
+### MVP 
+    1. User can input a new username
+    2. User can view dashboard
+    3. User can create new recipe
+    4. User can update or delete recipe
+
+### STRETCH
+    1. User can view other people's recipes
+    2. User can search other usernames
+

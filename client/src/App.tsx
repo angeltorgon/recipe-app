@@ -11,6 +11,7 @@ import Login from './components/Login';
 function App(props: any) {
   // const user = "Angel";
   const [ username, setUsername ] = useState("");
+  const [ loggedIn, setLoggedIn ] = useState(false);
 
   const changeHandler = (e: any) => { 
       e.preventDefault();
@@ -19,13 +20,14 @@ function App(props: any) {
 
   const submitHandler = (e: any) => { 
       e.preventDefault();
+      setLoggedIn(true);
       props.history.push(`/${username}`);
   };
 
 
   return (
     <div className="App">
-      <Nav {...props} />
+      <Nav {...props} username={loggedIn ? username : ""}/>
       <Switch >
         <Route path="/:username" component={Dashboard} />
         <Route path="/" render={(props) => <Login {...props} submitHandler={submitHandler} changeHandler={changeHandler} username={username}/>} />

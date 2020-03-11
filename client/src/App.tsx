@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Route, Switch, withRouter } from 'react-router-dom';
+// import ProtectedRoute from './utils/ProtectedRoute';
 
 
 // COMPONENTS
@@ -21,14 +22,16 @@ function App(props: any) {
   const submitHandler = (e: any) => { 
       e.preventDefault();
       setLoggedIn(true);
+      localStorage.setItem("username", username);
       props.history.push(`/${username}`);
   };
 
 
   return (
     <div className="App">
-      <Nav {...props} username={loggedIn ? username : ""}/>
+      <Nav {...props} username={username} />
       <Switch >
+        {/* <ProtectedRoute path="/:username" component={Dashboard}/> */}
         <Route path="/:username" component={Dashboard} />
         <Route path="/" render={(props) => <Login {...props} submitHandler={submitHandler} changeHandler={changeHandler} username={username}/>} />
       </Switch>

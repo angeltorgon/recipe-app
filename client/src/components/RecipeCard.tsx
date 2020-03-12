@@ -28,8 +28,8 @@ export default function RecipeCard(props: any) {
                 </ul>
             </div>
             <div className="button-container">
-                <button>DELETE</button>
-                <button>UPDATE</button>
+                <button className="delete">DELETE</button>
+                <button className="update">UPDATE</button>
             </div>
         </div>
     )

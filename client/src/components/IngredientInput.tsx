@@ -1,9 +1,20 @@
-import React from 'react'
+import React from 'react';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
 
-export default function IngredientInput(props: any) {
+interface IngredientInputProps {
+    name?: string;
+    quantity?: number;
+    unit?: number;
+}
+
+export default function IngredientInput<IngredientProps>() {
     return (
         <div>
-            <input type="text" placeholder={props.ingredient}/>
+            <Input id='outlined-basic' type='text'/>
+            <Input type='number'/>
+            <Input id='outlined-basic' type='text' name="quantity"/>
+            <Button>Add Ingredient</Button>
         </div>
     )
 }

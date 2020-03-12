@@ -5,16 +5,47 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import TextField from '@material-ui/core/TextField';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 // COMPONENTS
 import IngredientInput from './IngredientInput';
 
-// STYLES
-import './styles/dialog.scss'
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: "250px",
+      margin: '5px',
+      fontSize: '4rem'
+    },
+    form: {
+      padding: '5px',
+      display: 'flex',
+      flexDirection: 'column',
+      width: '500px',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    addRecipeButton: {
+      border: 'whitesmoke',
+      backgroundColor: 'lightgrey',
+      '&:hover': {
+        backgroundColor: 'grey'
+      }
+    }
+  }),
+);
 
 export default function DialogComponent() {
   const [open, setOpen] = React.useState(false);
   const [ingredients, setIngredients] = React.useState(["sauce"]);
+  const classes = useStyles();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,50 +55,42 @@ export default function DialogComponent() {
     setOpen(false);
   };
 
-  const addIngredientInput = (e: any ) => {
+  const addIngredientInput = (e: any) => {
     e.preventDefault();
     setIngredients([...ingredients, ""])
   };
 
   return (
-    <div className="dialog-container">
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-          ADD RECIPE
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <h2 id="alert-dialog-title">{"Enter Recipe Information"}</h2>
-        <div className="dialog-content">
-            <form className="recipe-form">
-                <div>
-                    <label>Title</label>
-                    <input type="text"/>
-                </div>
-                <div>
-                    <label>Description</label>
-                    <input type="text"/>
-                </div>
-                <div>
-                    {ingredients.map((ingredient) => {
-                        return <IngredientInput ingredient={ingredient} />
-                    })}
-                </div>
-                <button onClick={addIngredientInput}>Add Ingredient</button>
-            </form>
-        </div>
-        <DialogActions>
-          <button onClick={handleClose} color="primary">
-            POST
-          </button>
-          <button onClick={handleClose} color="primary" autoFocus>
-            DELETE
-          </button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <div id="dialog-container">
+    <Button className={classes.addRecipeButton} variant="outlined" color="primary" onClick={handleClickOpen}>
+        ADD RECIPE
+    </Button>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">{"Submit a recipe below!"}</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          <form className={classes.form}>
+            <TextField className={classes.textField} id="outlined-basic" label="Title" variant="outlined" />
+            <TextField className={classes.textField} id="outlined-basic" label="Description" variant="outlined" />
+            Enter ingredients below
+            <IngredientInput />
+          </form>
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="primary">
+          POST
+        </Button>
+        <Button onClick={handleClose} color="primary" autoFocus>
+          CANCEL
+        </Button>
+      </DialogActions>
+    </Dialog>
+  </div>
   );
 }

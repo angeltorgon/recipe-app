@@ -9,8 +9,6 @@ import './styles/nav.scss';
 // }
 
 export default function Nav(props: any) {
-    console.log("props - ", props)
-    let currUser:string = props.match.params.username; 
 
     return (
         <nav className="nav-container">
@@ -18,7 +16,7 @@ export default function Nav(props: any) {
                 <h1 className="nav-item">Recipes App</h1>
             </Link>
             <div className="nav-item">
-            { props.loggedIn && <p>Hello, {`${currUser}`}</p>}
+            { props.username.length > 0 ? <p>Hello, {`${props.username}`}</p> : null}
             </div>
         </nav>
     )

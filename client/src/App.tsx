@@ -11,7 +11,12 @@ import Login from './components/Login';
 
 function App(props: any) {
   // const user = "Angel";
-  const [ username, setUsername ] = useState("");
+  const [ username, setUsername ] = useState(() => {
+    if(localStorage.getItem("username")) {
+      return localStorage.getItem("username")
+    } 
+    return ""
+  });
   const [ loggedIn, setLoggedIn ] = useState(false);
 
   const changeHandler = (e: any) => { 
@@ -22,14 +27,14 @@ function App(props: any) {
   const submitHandler = (e: any) => { 
       e.preventDefault();
       setLoggedIn(true);
-      localStorage.setItem("username", username);
+      // localStorage.setItem("username", username);
       props.history.push(`/${username}`);
   };
 
 
   return (
     <div className="App">
-      <Nav {...props} username={username} />
+      <Nav username={username} />
       <Switch >
         {/* <ProtectedRoute path="/:username" component={Dashboard}/> */}
         <Route path="/:username" component={Dashboard} />

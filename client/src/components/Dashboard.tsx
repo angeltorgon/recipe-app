@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from 'axios';
 
 // COMPONENTS
 import RecipeCard from './RecipeCard';
+import DialogComponent from './Dialog';
 
 // STYLES
 import './styles/dashboard.scss';
@@ -34,7 +35,7 @@ export default function Dashboard(props: any) {
 
     return (
         <div className="dashboard-container">
-            <button>ADD RECIPE</button>
+            <DialogComponent />
             <div className="recipe-cards">
                 { recipes.map((recipe: Recipe) => {
                 return <RecipeCard recipe={recipe}/>

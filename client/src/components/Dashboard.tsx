@@ -34,10 +34,12 @@ export default function Dashboard(props: any) {
 
     return (
         <div className="dashboard-container">
-            Dashboard 
-            { recipes.map((recipe: Recipe) => {
-            return <RecipeCard recipe={recipe}/>
-            })}
+            <button>ADD RECIPE</button>
+            <div className="recipe-cards">
+                { recipes.map((recipe: Recipe) => {
+                return <RecipeCard recipe={recipe}/>
+                })}
+            </div>
         </div>
     )
 }

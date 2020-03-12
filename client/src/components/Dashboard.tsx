@@ -1,9 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios, { AxiosResponse } from 'axios';
 
-export default function Dashboard() {
+// COMPONENTS
+import RecipeCard from './RecipeCard';
+
+// STYLES
+import './styles/dashboard.scss';
+
+interface Props {
+    history: History
+}
+
+interface Recipe {
+    title: string;
+    username?: string;
+    description: string;
+    ingredients: string[];
+}
+
+export default function Dashboard(props: any) {
+
+    const [ recipes, setRecipes ] = useState([]);
+    
+    useEffect(() => {
+        axios.get("http://localhost:3500/recipes").then((res: AxiosResponse) => {
+            console.log("logging res at Dashboard - ", res);
+            setRecipes(res.data);
+        }).catch((err: Error) => {
+            console.log(err);
+        })
+    },[]);
+    
+
     return (
-        <div>
+        <div className="dashboard-container">
             Dashboard 
+            { recipes.map((recipe: Recipe) => {
+            return <RecipeCard recipe={recipe}/>
+            })}
         </div>
     )
 }

@@ -6,8 +6,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+// COMPONENTS
+import IngredientInput from './IngredientInput';
+
+// STYLES
+import './styles/dialog.scss'
+
 export default function DialogComponent() {
   const [open, setOpen] = React.useState(false);
+  const [ingredients, setIngredients] = React.useState(["sauce"]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -17,8 +24,13 @@ export default function DialogComponent() {
     setOpen(false);
   };
 
+  const addIngredientInput = (e: any ) => {
+    e.preventDefault();
+    setIngredients([...ingredients, ""])
+  };
+
   return (
-    <div>
+    <div className="dialog-container">
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
           ADD RECIPE
       </Button>
@@ -28,20 +40,32 @@ export default function DialogComponent() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
+        <h2 id="alert-dialog-title">{"Enter Recipe Information"}</h2>
+        <div className="dialog-content">
+            <form className="recipe-form">
+                <div>
+                    <label>Title</label>
+                    <input type="text"/>
+                </div>
+                <div>
+                    <label>Description</label>
+                    <input type="text"/>
+                </div>
+                <div>
+                    {ingredients.map((ingredient) => {
+                        return <IngredientInput ingredient={ingredient} />
+                    })}
+                </div>
+                <button onClick={addIngredientInput}>Add Ingredient</button>
+            </form>
+        </div>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Disagree
-          </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Agree
-          </Button>
+          <button onClick={handleClose} color="primary">
+            POST
+          </button>
+          <button onClick={handleClose} color="primary" autoFocus>
+            DELETE
+          </button>
         </DialogActions>
       </Dialog>
     </div>

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
     textField: {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
-      width: "250px",
+      width: "100%",
       margin: '5px',
       fontSize: '4rem'
     },
@@ -42,9 +42,32 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+interface IngredientInterface {
+  name: string; 
+  quantity: number; 
+  unit: string;
+}
+
+interface StepInterface {
+  step: number;
+  description: string; 
+}
+
+interface Recipe {
+    title: string;
+    description: string;
+    ingredients: IngredientInterface[];
+    steps: StepInterface[]
+}
+
 export default function DialogComponent() {
   const [open, setOpen] = React.useState(false);
-  const [ingredients, setIngredients] = React.useState(["sauce"]);
+  const [recipe, setRecipe] = React.useState({
+    title: "",
+    description: "",
+    ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
+    steps: [{step: 0, description: ""}]
+  });
   const classes = useStyles();
 
   const handleClickOpen = () => {
@@ -55,9 +78,14 @@ export default function DialogComponent() {
     setOpen(false);
   };
 
-  const addIngredientInput = (e: any) => {
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setIngredients([...ingredients, ""])
+    setRecipe({...recipe, [e.target.name]: e.target.value})
+  }
+
+  const addIngredient = (ingredient: IngredientInterface) => {
+    console.log("adding ingredient...", ingredient)
+    setRecipe({...recipe, ingredients: [...recipe.ingredients, ingredient]})
   };
 
   return (
@@ -75,10 +103,29 @@ export default function DialogComponent() {
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           <form className={classes.form}>
-            <TextField className={classes.textField} id="outlined-basic" label="Title" variant="outlined" />
-            <TextField className={classes.textField} id="outlined-basic" label="Description" variant="outlined" />
+            <TextField 
+              className={classes.textField} 
+              id="outlined-basic" 
+              label="Title" 
+              name="title"
+              onChange={changeHandler}
+              value={recipe.title}
+              variant="outlined" />
+            <TextField 
+              className={classes.textField} 
+              id="outlined-basic" 
+              label="Description" 
+              name="description"
+              onChange={changeHandler}
+              value={recipe.description}
+              variant="outlined" />
             Enter ingredients below
-            <IngredientInput />
+            {
+              recipe.ingredients.map((ingredient) => {
+                return <p>{`${ingredient.name} - ${ingredient.quantity}${ingredient.unit}`}</p>
+              })
+            }
+            <IngredientInput addIngredient={addIngredient}/>
           </form>
         </DialogContentText>
       </DialogContent>

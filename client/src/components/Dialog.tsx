@@ -11,6 +11,7 @@ import axios from 'axios';
 
 // COMPONENTS
 import IngredientInput from './IngredientInput';
+import InstructionInput from './InstructionInput';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,7 +51,6 @@ interface IngredientInterface {
 }
 
 interface StepInterface {
-  step: number;
   description: string; 
 }
 
@@ -58,7 +58,7 @@ interface Recipe {
     title: string;
     description: string;
     ingredients: IngredientInterface[];
-    steps: StepInterface[]
+    instructions: StepInterface[]
 }
 
 export default function DialogComponent(props: any) {
@@ -68,7 +68,7 @@ export default function DialogComponent(props: any) {
     description: "",
     username: localStorage.getItem("username"),
     ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
-    steps: [{step: 0, description: ""}]
+    instructions: [{description: ""}]
   });
   const classes = useStyles();
 
@@ -80,11 +80,28 @@ export default function DialogComponent(props: any) {
     setOpen(false);
   };
 
+  const handleCancel = () => {
+    setRecipe({
+      title: "",
+      description: "",
+      username: localStorage.getItem("username"),
+      ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
+      instructions: [{description: ""}]
+    })
+    handleClose();
+  };
+
   const handleSubmit = () => {
-    console.log("recipe - ", recipe);
     axios.post("http://localhost:3500/recipes", recipe)
     .then((res) => {
       props.getRecipes();
+      setRecipe({
+        title: "",
+        description: "",
+        username: localStorage.getItem("username"),
+        ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
+        instructions: [{description: ""}] 
+      })
     })
     .catch((err) => {
       console.log("error - ", err)
@@ -98,8 +115,11 @@ export default function DialogComponent(props: any) {
   }
 
   const addIngredient = (ingredient: IngredientInterface) => {
-    console.log("adding ingredient...", ingredient)
     setRecipe({...recipe, ingredients: [...recipe.ingredients, ingredient]})
+  };
+
+  const addInstruction = (instruction: StepInterface) => {
+    setRecipe({...recipe, instructions: [...recipe.instructions, instruction]})
   };
 
   return (
@@ -133,13 +153,20 @@ export default function DialogComponent(props: any) {
               onChange={changeHandler}
               value={recipe.description}
               variant="outlined" />
-            Enter ingredients below
+            <h3>Enter ingredients below</h3>
             {
               recipe.ingredients.map((ingredient) => {
                 return <p>{`${ingredient.name} - ${ingredient.quantity}${ingredient.unit}`}</p>
               })
             }
             <IngredientInput addIngredient={addIngredient}/>
+            <h3>Enter instructions below</h3>
+            {
+              recipe.instructions.map((instruction) => {
+                return <p>{`${instruction.description}`}</p>
+              })
+            }
+            <InstructionInput addInstruction={addInstruction}/>
           </form>
         </DialogContentText>
       </DialogContent>
@@ -147,7 +174,7 @@ export default function DialogComponent(props: any) {
         <Button onClick={handleSubmit} color="primary">
           POST
         </Button>
-        <Button onClick={handleClose} color="primary" autoFocus>
+        <Button onClick={handleCancel} color="primary" autoFocus>
           CANCEL
         </Button>
       </DialogActions>

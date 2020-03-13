@@ -23,10 +23,16 @@ const useStyles = makeStyles((theme: Theme) =>
       flexWrap: 'wrap',
     },
     quantityInput: {
-        width: "80px",
+        width: "100px",
+        margin: "3px"
+    },
+    nameInput: {
+        width: "80%",
+        margin: "3px"
     },
     unitInput: {
-        width: "60px",
+        width: "100px",
+        margin: "3px"
     },
     inputContainer: {
         width: "100%",
@@ -65,6 +71,7 @@ export default function IngredientInput(props: any) {
                 label="Name" 
                 variant="outlined" 
                 name="name"
+                className={classes.nameInput}
                 onChange={handleChange}
                 value={ingredient.name}
                 type='text'/>

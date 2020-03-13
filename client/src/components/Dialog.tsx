@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import axios from 'axios';
 
 // COMPONENTS
 import IngredientInput from './IngredientInput';
@@ -65,6 +66,7 @@ export default function DialogComponent() {
   const [recipe, setRecipe] = React.useState({
     title: "",
     description: "",
+    username: localStorage.getItem("username"),
     ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
     steps: [{step: 0, description: ""}]
   });
@@ -75,6 +77,18 @@ export default function DialogComponent() {
   };
 
   const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    console.log("recipe - ", recipe);
+    axios.post("http://localhost:3500/recipes", recipe)
+    .then((res) => {
+      console.log("response - ", res)
+    })
+    .catch((err) => {
+      console.log("error - ", err)
+    });
     setOpen(false);
   };
 
@@ -130,7 +144,7 @@ export default function DialogComponent() {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={handleSubmit} color="primary">
           POST
         </Button>
         <Button onClick={handleClose} color="primary" autoFocus>

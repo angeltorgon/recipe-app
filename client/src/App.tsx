@@ -37,7 +37,7 @@ function App(props: any) {
       <Nav username={username} />
       <Switch >
         {/* <ProtectedRoute path="/:username" component={Dashboard}/> */}
-        <Route path="/:username" component={Dashboard} />
+        <Route path="/:username" render={(props) => <Dashboard {...props} username={username}/>} />
         <Route path="/" render={(props) => <Login {...props} submitHandler={submitHandler} changeHandler={changeHandler} username={username}/>} />
       </Switch>
     </div>

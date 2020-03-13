@@ -22,20 +22,23 @@ interface Recipe {
 export default function Dashboard(props: any) {
 
     const [ recipes, setRecipes ] = useState([]);
-    
-    useEffect(() => {
-        axios.get("http://localhost:3500/recipes").then((res: AxiosResponse) => {
-            console.log("logging res at Dashboard - ", res);
+
+    const getRecipes = () => {
+        axios.get(`http://localhost:3500/users/${props.username}/recipes`).then((res: AxiosResponse) => {
             setRecipes(res.data);
         }).catch((err: Error) => {
             console.log(err);
         })
+    };
+    
+    useEffect(() => {
+        getRecipes();
     },[]);
     
 
     return (
         <div className="dashboard-container">
-            <DialogComponent />
+            <DialogComponent getRecipes={getRecipes}/>
             <div className="recipe-cards">
                 { recipes.map((recipe: Recipe) => {
                 return <RecipeCard recipe={recipe}/>

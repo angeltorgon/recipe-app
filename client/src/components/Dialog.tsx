@@ -61,7 +61,7 @@ interface Recipe {
     steps: StepInterface[]
 }
 
-export default function DialogComponent() {
+export default function DialogComponent(props: any) {
   const [open, setOpen] = React.useState(false);
   const [recipe, setRecipe] = React.useState({
     title: "",
@@ -84,7 +84,7 @@ export default function DialogComponent() {
     console.log("recipe - ", recipe);
     axios.post("http://localhost:3500/recipes", recipe)
     .then((res) => {
-      console.log("response - ", res)
+      props.getRecipes();
     })
     .catch((err) => {
       console.log("error - ", err)

@@ -72,10 +72,6 @@ export default function ConfirmationDialog(props: any) {
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">{"Are you sure?"}</DialogTitle>
-      <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-        </DialogContentText>
-      </DialogContent>
       <DialogActions>
         <Button onClick={handleYes} color="primary">
             YES

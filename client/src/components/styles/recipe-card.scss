@@ -16,14 +16,9 @@
     .button-container {
         display: flex;
         width: 100%;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
-        padding: 10px;
         position: absolute;
         bottom: 20px;
-
-        .update {
-            background-color: rgb(49, 133, 211);
-        }
     }
 }

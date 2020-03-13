@@ -35,11 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
     },
     addRecipeButton: {
-      border: 'whitesmoke',
-      backgroundColor: 'lightgrey',
-      '&:hover': {
-        backgroundColor: 'grey'
-      }
+      width: "200px",
     }
   }),
 );

@@ -34,12 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       alignItems: 'center',
     },
-    addRecipeButton: {
-      border: 'whitesmoke',
-      backgroundColor: 'lightgrey',
-      '&:hover': {
-        backgroundColor: 'grey'
-      }
+    updateRecipeButton: {
+      margin: "5px"
     }
   }),
 );
@@ -124,8 +120,8 @@ export default function DialogComponent(props: any) {
 
   return (
     <div id="dialog-container">
-    <Button className={classes.addRecipeButton} variant="outlined" color="primary" onClick={handleClickOpen}>
-        ADD RECIPE
+    <Button className={classes.updateRecipeButton} variant="outlined" color="primary" onClick={handleClickOpen}>
+        UPDATE 
     </Button>
     <Dialog
       open={open}

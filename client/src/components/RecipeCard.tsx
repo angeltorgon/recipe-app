@@ -3,6 +3,10 @@ import React from 'react';
 // STYLES
 import './styles/recipe-card.scss';
 
+// COMPONENTS
+import ConfirmationDialog from './ConfirmationDialog';
+import UpdateDialog from './UpdateDialog';
+
 interface Recipe {
     title: string;
     username?: string;
@@ -28,8 +32,9 @@ export default function RecipeCard(props: any) {
                 </ul>
             </div>
             <div className="button-container">
-                <button className="delete">DELETE</button>
-                <button className="update">UPDATE</button>
+                <ConfirmationDialog />
+                <UpdateDialog />
+                {/* <button className="update">UPDATE</button> */}
             </div>
         </div>
     )

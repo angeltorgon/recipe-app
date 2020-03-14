@@ -32,8 +32,8 @@ export default function RecipeCard(props: any) {
                 </ul>
             </div>
             <div className="button-container">
-                <ConfirmationDialog />
-                <UpdateDialog />
+                <ConfirmationDialog getRecipes={props.getRecipes} recipeId={props.recipe._id}/>
+                <UpdateDialog getRecipes={props.getRecipes} recipe={props.recipe} />
                 {/* <button className="update">UPDATE</button> */}
             </div>
         </div>

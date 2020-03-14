@@ -43,21 +43,16 @@ export default function ConfirmationDialog(props: any) {
   };
 
   const handleYes = () => {
-    // axios.post("http://localhost:3500/recipes", recipe)
-    // .then((res) => {
-    //   props.getRecipes();
-    //   setRecipe({
-    //     title: "",
-    //     description: "",
-    //     username: localStorage.getItem("username"),
-    //     ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
-    //     instructions: [{description: ""}] 
-    //   })
-    // })
-    // .catch((err) => {
-    //   console.log("error - ", err)
-    // });
-    setOpen(false);
+    console.log("removing recipe", props.recipeId)
+    axios.delete(`http://localhost:3500/recipes/${props.recipeId}`)
+    .then((res) => {
+      setOpen(false);
+      console.log("removed recipe")
+      props.getRecipes();
+    })
+    .catch((err) => {
+      console.log("error - ", err)
+    });
   };
 
   return (

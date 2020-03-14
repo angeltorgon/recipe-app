@@ -41,7 +41,7 @@ export default function Dashboard(props: any) {
             <DialogComponent getRecipes={getRecipes}/>
             <div className="recipe-cards">
                 { recipes.map((recipe: Recipe) => {
-                return <RecipeCard recipe={recipe}/>
+                return <RecipeCard getRecipes={getRecipes} recipe={recipe}/>
                 })}
             </div>
         </div>

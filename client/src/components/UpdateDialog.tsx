@@ -60,11 +60,11 @@ interface Recipe {
 export default function DialogComponent(props: any) {
   const [open, setOpen] = React.useState(false);
   const [recipe, setRecipe] = React.useState({
-    title: "",
-    description: "",
+    title: props.recipe.title,
+    description: props.recipe.description,
     username: localStorage.getItem("username"),
-    ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
-    instructions: [{description: ""}]
+    ingredients: props.recipe.ingredients, 
+    instructions: props.recipe.instructions ? props.recipe.instructions : [{description: ""}],
   });
   const classes = useStyles();
 
@@ -88,9 +88,8 @@ export default function DialogComponent(props: any) {
   };
 
   const handleSubmit = () => {
-    axios.post("http://localhost:3500/recipes", recipe)
+    axios.put(`http://localhost:3500/recipes/${props.recipe._id}`, recipe)
     .then((res) => {
-      props.getRecipes();
       setRecipe({
         title: "",
         description: "",
@@ -98,6 +97,7 @@ export default function DialogComponent(props: any) {
         ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
         instructions: [{description: ""}] 
       })
+      props.getRecipes();
     })
     .catch((err) => {
       console.log("error - ", err)
@@ -151,14 +151,14 @@ export default function DialogComponent(props: any) {
               variant="outlined" />
             <h3>Enter ingredients below</h3>
             {
-              recipe.ingredients.map((ingredient) => {
+              recipe.ingredients.map((ingredient: any) => {
                 return <p>{`${ingredient.name} - ${ingredient.quantity}${ingredient.unit}`}</p>
               })
             }
             <IngredientInput addIngredient={addIngredient}/>
             <h3>Enter instructions below</h3>
             {
-              recipe.instructions.map((instruction) => {
+              recipe.instructions.map((instruction: any) => {
                 return <p>{`${instruction.description}`}</p>
               })
             }
@@ -168,7 +168,7 @@ export default function DialogComponent(props: any) {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleSubmit} color="primary">
-          POST
+          UPDATE
         </Button>
         <Button onClick={handleCancel} color="primary" autoFocus>
           CANCEL

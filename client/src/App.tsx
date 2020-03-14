@@ -10,7 +10,6 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 
 function App(props: any) {
-  // const user = "Angel";
   const [ username, setUsername ] = useState(() => {
     if(localStorage.getItem("username")) {
       return localStorage.getItem("username")
@@ -27,7 +26,7 @@ function App(props: any) {
   const submitHandler = (e: any) => { 
       e.preventDefault();
       setLoggedIn(true);
-      // localStorage.setItem("username", username);
+      localStorage.setItem("username", `${username}`);
       props.history.push(`/${username}`);
   };
 

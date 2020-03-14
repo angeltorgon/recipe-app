@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 // STYLES
 import './styles/login.scss';
 
-// type LoginProps = {
-//     username: string;
-//     submitHandler: () => void;
-//     onChangeHandler: (e: any) => void;
-// }
+type LoginProps = {
+    username: string;
+    submitHandler: (e: React.FormEvent<HTMLFormElement>) => void;
+    changeHandler: (e: React.FormEvent<HTMLInputElement>) => void;
+}
 
-export default function Login(props: any) {
+export default function Login(props: LoginProps) {
 
     return (
         <div className="login-container">

@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-// STYLES
 import './styles/nav.scss';
 
-// type NavProps = {
-//     username: string
-// }
+interface NavProps {
+    username: string
+}
 
-export default function Nav(props: any) {
-
+const Nav: React.FC<NavProps> = (props) => {
     return (
         <nav className="nav-container">
             <Link to="/">
@@ -21,3 +19,5 @@ export default function Nav(props: any) {
         </nav>
     )
 }
+
+export default Nav;

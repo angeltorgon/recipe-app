@@ -40,24 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface IngredientInterface {
-  name: string; 
-  quantity: number; 
-  unit: string;
-}
-
-interface StepInterface {
-  description: string; 
-}
-
-interface Recipe {
-    title: string;
-    description: string;
-    ingredients: IngredientInterface[];
-    instructions: StepInterface[]
-}
-
-export default function DialogComponent(props: any) {
+const DialogComponent: React.FC <DiProps> = (props) => {
   const [open, setOpen] = React.useState(false);
   const [recipe, setRecipe] = React.useState({
     title: props.recipe.title,
@@ -120,17 +103,17 @@ export default function DialogComponent(props: any) {
 
   return (
     <div id="dialog-container">
-    <Button className={classes.updateRecipeButton} variant="outlined" color="primary" onClick={handleClickOpen}>
-        UPDATE 
-    </Button>
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
-    >
-      <DialogTitle id="alert-dialog-title">{"Submit a recipe below!"}</DialogTitle>
-      <DialogContent>
+      <Button className={classes.updateRecipeButton} variant="outlined" color="primary" onClick={handleClickOpen}>
+          UPDATE 
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Submit a recipe below!"}</DialogTitle>
+        <DialogContent>
         <DialogContentText id="alert-dialog-description">
           <form className={classes.form}>
             <TextField 
@@ -165,16 +148,18 @@ export default function DialogComponent(props: any) {
             <InstructionInput addInstruction={addInstruction}/>
           </form>
         </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleSubmit} color="primary">
-          UPDATE
-        </Button>
-        <Button onClick={handleCancel} color="primary" autoFocus>
-          CANCEL
-        </Button>
-      </DialogActions>
-    </Dialog>
-  </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleSubmit} color="primary">
+            UPDATE
+          </Button>
+          <Button onClick={handleCancel} color="primary" autoFocus>
+            CANCEL
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
   );
 }
+
+export default DialogComponent;

@@ -18,9 +18,11 @@ This project is a recipe app. When the user gets to the site they will be prompt
     1. User can input a new username
     2. User can view dashboard
     3. User can create new recipe
-    4. User can update or delete recipe
+    4. User can update or 
+    5. User can delete recipe
 
 ### STRETCH
     1. User can view other people's recipes
-    2. User can search other usernames
+    2. User can search recipes
 
+## Learnings

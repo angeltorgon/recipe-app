@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+// STYLES
 import './styles/nav.scss';
-
-interface NavProps {
-    username: string
-}
 
 const Nav: React.FC<NavProps> = (props) => {
     return (

@@ -22,11 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface ConfirmationDialogInterface {
-    getRecipes: () => void;
-    recipeId: number;
-}
-
 const ConfirmationDialog: React.FC<ConfirmationDialogInterface> = (props) => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();

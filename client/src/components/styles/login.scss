@@ -1,55 +1,69 @@
 .login-container {
-    border: 1px solid whitesmoke;
-    border-radius: 5px;
-    max-width: 400px;
-    margin: 100px auto;
-    height: 400px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-image: url("https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 
-    h1 {
-        border: 1px solid lightgrey;
-        border-radius: 5px;
-        height: 40px;
-        width: 300px;
-    }
-
-    form {
+    .login-card {
         display: flex;
         flex-direction: column;
-        margin: 10px 0;
+        padding: 20px;
+        border: 1px solid whitesmoke;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        max-width: 400px;
+        margin: 0 auto;
+        height: 400px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: whitesmoke;
 
-        div {
+        h1 {
+            border: 1px solid lightgrey;
+            border-radius: 5px;
+            height: 40px;
+            width: 300px;
+        }
+
+        form {
             display: flex;
             flex-direction: column;
-            height: 100px;
-            width: 300px;
-            justify-content: center;
+            margin: 10px 0;
 
-            .username-input {
-                border: 1px solid rgb(0, 73, 114);;
-                // color: rgb(0, 73, 114);
-                height: 50px;
-                margin: 15px 0;
-                border-radius: 5px;
-                padding: 5px;
-                font-size: 2.5rem;
-                padding: 10px;
-                text-align: center;
-            }
+            div {
+                display: flex;
+                flex-direction: column;
+                height: 100px;
+                width: 300px;
+                justify-content: center;
 
-            button {
-                height: 60px;
-                margin: 10px;
-                border-radius: 5px;
-                padding: 10px;
-                color: white;
-                font-size: 18px;
-                background-color: rgb(0, 73, 114);
-                opacity: .8;
+                .username-input {
+                    border: 1px solid rgb(0, 73, 114);;
+                    // color: rgb(0, 73, 114);
+                    height: 50px;
+                    margin: 15px 0;
+                    border-radius: 5px;
+                    padding: 5px;
+                    font-size: 2.5rem;
+                    padding: 10px;
+                    text-align: center;
+                }
+
+                button {
+                    height: 60px;
+                    margin: 10px;
+                    border-radius: 5px;
+                    padding: 10px;
+                    color: white;
+                    font-size: 18px;
+                    background-color: rgb(0, 73, 114);
+                    opacity: .8;
+                }
             }
         }
     }

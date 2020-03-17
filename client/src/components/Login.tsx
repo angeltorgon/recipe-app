@@ -6,17 +6,19 @@ import './styles/login.scss';
 export default function Login(props: LoginProps) {
     return (
         <div className="login-container">
-            <h2>ENTER USERNAME</h2>
-            <form onSubmit={props.submitHandler}>
-                <div>
-                    <input 
-                        type="text" 
-                        className="username-input" 
-                        value={props.username} 
-                        onChange={props.changeHandler} />
-                    <button type="submit">ENTER</button>
-                </div>
-            </form>
+            <div className="login-card">
+                <h2>ENTER USERNAME</h2>
+                <form onSubmit={props.submitHandler}>
+                    <div>
+                        <input 
+                            type="text" 
+                            className="username-input" 
+                            value={props.username} 
+                            onChange={props.changeHandler} />
+                        <button type="submit">ENTER</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

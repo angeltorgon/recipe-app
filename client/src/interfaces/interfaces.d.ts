@@ -30,3 +30,8 @@ interface DiProps {
   recipe: Recipe;
   getRecipes: () => void;
 }
+
+interface ConfirmationDialogInterface {
+    getRecipes: () => void;
+    recipeId: number;
+}

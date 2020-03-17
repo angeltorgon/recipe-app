@@ -26,3 +26,5 @@ This project is a recipe app. When the user gets to the site they will be prompt
     2. User can search recipes
 
 ## Learnings
+
+This has been a very productive project. In the process I learned to use TypeScript and to integrate it into React. It took some practice to getting used to declaring types for every variable declared but it's coming along much better. I also had to learn to pass down props and to declare interfaces for them. The coolest thing I learned was to create a `d.ts` file where I could declare all my interfaces and types and they would be made available across the project. It made things much cleaner. It is also really cool becaue the TS Linter gives so many hints as to what you need to do. I think I'm going to continue using TypeScript at least for the next few projects so that I can get even more practice.

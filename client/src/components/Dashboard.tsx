@@ -8,17 +8,6 @@ import DialogComponent from './Dialog';
 // STYLES
 import './styles/dashboard.scss';
 
-interface Props {
-    history: History
-}
-
-interface Recipe {
-    title: string;
-    username?: string;
-    description: string;
-    ingredients: string[];
-}
-
 export default function Dashboard(props: any) {
 
     const [ recipes, setRecipes ] = useState([]);

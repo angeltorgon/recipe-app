@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const DialogComponent: React.FC <DiProps> = (props) => {
+const DialogComponent: React.FC<DiProps> = (props) => {
   const [open, setOpen] = React.useState(false);
   const [recipe, setRecipe] = React.useState({
     title: props.recipe.title,

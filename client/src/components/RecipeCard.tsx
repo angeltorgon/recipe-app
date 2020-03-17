@@ -7,26 +7,19 @@ import './styles/recipe-card.scss';
 import ConfirmationDialog from './ConfirmationDialog';
 import UpdateDialog from './UpdateDialog';
 
-interface Recipe {
-    title: string;
-    username?: string;
-    description: string;
-    ingredients: string[];
+interface RecipeCardProps {
+    recipe: Recipe;
+    getRecipes: () => void; 
 }
 
-interface Ingredient {
-    name: string;
-    quantity: string;
-}
-
-export default function RecipeCard(props: any) {
+const RecipeCard: React.FC<RecipeCardProps> = (props) => {
     return (
         <div className="recipe-card-container">
             <div>
                 <h2>{props.recipe.title}</h2>
                 <p>{props.recipe.description}</p>
                 <ul>
-                    {props.recipe.ingredients.map((ingredient: Ingredient) => {
+                    {props.recipe.ingredients.map((ingredient) => {
                     return <li>{ingredient.name}</li>
                     })} 
                 </ul>
@@ -39,3 +32,5 @@ export default function RecipeCard(props: any) {
         </div>
     )
 }
+
+export default RecipeCard;

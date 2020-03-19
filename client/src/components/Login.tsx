@@ -38,8 +38,9 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: "whitesmoke",
     },
     button: {
-        height: "60px",
-        margin: "10px",
+        height: "40px",
+        margin: "20px",
+        width: "200px",
         borderRadius: "5px",
         padding: "10px",
         color: "white",
@@ -52,8 +53,8 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
       height: "40px",
       width: "100%",
-      margin: '5px',
-      fontSize: '4rem'
+      margin: "10px",
+      fontSize: "4rem"
     },
   }),
 );
@@ -90,7 +91,7 @@ function Login(props: any) {
     return (
         <div className={classes.loginContainer}>
             <div className={classes.loginCard}>
-                <h2>ENTER USERNAME</h2>
+                <h2>Sign Up!</h2>
                 <form onSubmit={submitHandler}>
                     <div>
                         <TextField 

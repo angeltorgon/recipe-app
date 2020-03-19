@@ -6,10 +6,10 @@ import RecipeCard from './RecipeCard';
 import DialogComponent from './Dialog';
 
 // STYLES
-import './styles/dashboard.scss';
+import useStyles from './styles/dashboard';
 
 export default function Dashboard(props: any) {
-
+    const classes = useStyles();
     const [ recipes, setRecipes ] = useState([]);
 
     const getRecipes = () => {
@@ -26,7 +26,7 @@ export default function Dashboard(props: any) {
     
 
     return (
-        <div className="dashboard-container">
+        <div className={classes.dashboardContainer}>
             <DialogComponent getRecipes={getRecipes}/>
             <div className="recipe-cards">
                 { recipes.map((recipe: Recipe) => {

@@ -1,11 +1,11 @@
 import React from 'react';
 
-// STYLES
-import './styles/recipe-card.scss';
-
 // COMPONENTS
 import ConfirmationDialog from './ConfirmationDialog';
 import UpdateDialog from './UpdateDialog';
+
+// STYLES
+import useStyles from './styles/recipeCard';
 
 interface RecipeCardProps {
     recipe: Recipe;
@@ -13,8 +13,9 @@ interface RecipeCardProps {
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = (props) => {
+    const classes = useStyles();
     return (
-        <div className="recipe-card-container">
+        <div className={classes.recipeCardContainer}>
             <div>
                 <h2>{props.recipe.title}</h2>
                 <p>{props.recipe.description}</p>
@@ -24,7 +25,7 @@ const RecipeCard: React.FC<RecipeCardProps> = (props) => {
                     })} 
                 </ul>
             </div>
-            <div className="button-container">
+            <div className={classes.buttonContainer}>
                 <ConfirmationDialog getRecipes={props.getRecipes} recipeId={props.recipe._id}/>
                 <UpdateDialog getRecipes={props.getRecipes} recipe={props.recipe} />
                 {/* <button className="update">UPDATE</button> */}

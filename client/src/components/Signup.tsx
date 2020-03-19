@@ -72,14 +72,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-function Login(props: any) {
+const Signup = (props: any) => {
     const [ user, setUser ] = useState({
         username: "",
         password: ""
     });
-    const [ error, setError ] = useState(false);
     const classes = useStyles();
-
+    const [ error, setError ] = useState(false);
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement> ) => { 
         e.preventDefault();
         setUser({...user, [e.target.name]: e.target.value});
@@ -88,7 +87,7 @@ function Login(props: any) {
     const submitHandler = (e: React.FormEvent) => { 
         e.preventDefault();
         axios
-        .post('http://localhost:3500/auth/login', user)
+        .post('http://localhost:3500/auth/signup', user)
         .then((res) => {
             setUser({
                 username: "",
@@ -98,8 +97,8 @@ function Login(props: any) {
             props.history.push(`/${user.username}`);
         })
         .catch((err) => {
-            console.log(err);
             setError(true);
+            console.log(err);
         })
     };
 
@@ -107,7 +106,7 @@ function Login(props: any) {
         <div className={classes.loginContainer}>
             <div className={classes.loginCard}>
                 <form className={classes.form} onSubmit={submitHandler}>
-                    <h2>Log In!</h2>
+                    <h2>Sign Up!</h2>
                     {error ? <p className={classes.error}>There was an error.</p> : null}
                     <TextField 
                         type="text" 
@@ -129,11 +128,11 @@ function Login(props: any) {
                         name="password" 
                         variant="outlined"
                         />
-                    <button className={classes.button} type="submit">Log In</button>
-                    <p>Not a user? <Link to="/">Sign Up</Link></p>
+                    <button className={classes.button} type="submit">Sign Up</button>
+                    <p>Already a user? <Link to="/login">Log In</Link></p>
                 </form>
             </div>
         </div>
     )
 }
-export default Login;
+export default Signup;

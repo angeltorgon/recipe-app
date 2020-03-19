@@ -7,6 +7,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Nav from './components/Nav';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
+import Signup from './components/Signup';
 
 function App(props: any) {
 
@@ -15,8 +16,9 @@ function App(props: any) {
       <Nav />
       <Switch >
         {/* <ProtectedRoute path="/:username" component={Dashboard}/> */}
+        <Route path="/login" render={(props) => <Login {...props} />} />
         <Route path="/:username" render={(props) => <Dashboard {...props} />} />
-        <Route path="/" render={(props) => <Login {...props} />} />
+        <Route path="/" render={(props) => <Signup {...props} />} />
       </Switch>
     </div>
   );

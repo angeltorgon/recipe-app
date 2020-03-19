@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: "5px",
             justifyContent: "center",
             fontSize: "1.4rem",
-            position: "relative"
+            position: "relative",
+            padding: "20px"
         }, 
         buttonContainer: {
             display: "flex",

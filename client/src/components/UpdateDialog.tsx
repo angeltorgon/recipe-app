@@ -40,12 +40,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const DialogComponent: React.FC<DiProps> = (props) => {
+const DialogComponent = (props: any) => {
   const [open, setOpen] = React.useState(false);
+  console.log(props);
   const [recipe, setRecipe] = React.useState({
     title: props.recipe.title,
     description: props.recipe.description,
-    username: localStorage.getItem("username"),
+    username: props.match.params.username,
     ingredients: props.recipe.ingredients, 
     instructions: props.recipe.instructions ? props.recipe.instructions : [{description: ""}],
   });
@@ -63,7 +64,7 @@ const DialogComponent: React.FC<DiProps> = (props) => {
     setRecipe({
       title: "",
       description: "",
-      username: localStorage.getItem("username"),
+      username: props.match.params.username,
       ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
       instructions: [{description: ""}]
     })

@@ -20,12 +20,15 @@ function Login(props: any) {
         axios
         .post('http://localhost:3500/auth/signup', user)
         .then((res) => {
-            console.log("res", res)
+            setUser({
+                username: "",
+                password: ""
+            })
+            props.history.push(`/${user.username}`);
         })
         .catch((err) => {
-            console.error(err);
+            console.log(err);
         })
-        // props.history.push(`/${user.username}`);
     };
 
     return (

@@ -62,12 +62,11 @@ export default function DialogComponent(props: any) {
   const [recipe, setRecipe] = React.useState({
     title: "",
     description: "",
-    username: localStorage.getItem("username"),
+    username: props.match.params.username,
     ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
     instructions: [{description: ""}]
   });
   const classes = useStyles();
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -80,7 +79,7 @@ export default function DialogComponent(props: any) {
     setRecipe({
       title: "",
       description: "",
-      username: localStorage.getItem("username"),
+      username: props.match.params.username,
       ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
       instructions: [{description: ""}]
     })

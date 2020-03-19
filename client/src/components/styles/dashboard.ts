@@ -18,6 +18,13 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: "20px 5px",
             fontSize: "1.3rem",
             borderRadius: "5px"
+        },
+        recipeCards: {
+            display: "flex",
+            margin: "10px",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center"
         }
     })
   )

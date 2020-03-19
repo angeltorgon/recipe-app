@@ -3,7 +3,6 @@ interface NavProps {
 }
 
 interface LoginProps {
-    username: string;
     submitHandler: (e: React.FormEvent<HTMLFormElement>) => void;
     changeHandler: (e: React.FormEvent<HTMLInputElement>) => void;
 }

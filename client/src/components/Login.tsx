@@ -56,6 +56,15 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: "10px",
       fontSize: "4rem"
     },
+    form: {
+        display: "flex",
+        flexDirection: "column",
+        margin: "10px 0",
+        height: "100px",
+        width: "300px",
+        justifyContent: "center",
+        alignItems: "center"
+    }
   }),
 );
 
@@ -91,32 +100,30 @@ function Login(props: any) {
     return (
         <div className={classes.loginContainer}>
             <div className={classes.loginCard}>
-                <h2>Sign Up!</h2>
-                <form onSubmit={submitHandler}>
-                    <div>
-                        <TextField 
-                            type="text" 
-                            value={user.username} 
-                            className={classes.textField} 
-                            onChange={changeHandler} 
-                            placeholder="username" 
-                            name="username" 
-                            label="username" 
-                            variant="outlined"
-                            />
-                        <TextField 
-                            type="text" 
-                            value={user.password} 
-                            className={classes.textField} 
-                            onChange={changeHandler} 
-                            placeholder="password" 
-                            label="password" 
-                            name="password" 
-                            variant="outlined"
-                            />
-                        <button className={classes.button} type="submit">Sign Up</button>
-                        <p>Already a user? <Link to="/login">Log In</Link></p>
-                    </div>
+                <form className={classes.form} onSubmit={submitHandler}>
+                    <h2>Sign Up!</h2>
+                    <TextField 
+                        type="text" 
+                        value={user.username} 
+                        className={classes.textField} 
+                        onChange={changeHandler} 
+                        placeholder="username" 
+                        name="username" 
+                        label="username" 
+                        variant="outlined"
+                        />
+                    <TextField 
+                        type="text" 
+                        value={user.password} 
+                        className={classes.textField} 
+                        onChange={changeHandler} 
+                        placeholder="password" 
+                        label="password" 
+                        name="password" 
+                        variant="outlined"
+                        />
+                    <button className={classes.button} type="submit">Sign Up</button>
+                    <p>Already a user? <Link to="/login">Log In</Link></p>
                 </form>
             </div>
         </div>

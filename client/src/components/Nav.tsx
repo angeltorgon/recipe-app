@@ -2,13 +2,15 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // STYLES
-import './styles/nav.scss';
+import useStyles from "./styles/nav"
 
 const Nav: React.FC = () => {
+    const classes = useStyles();
+
     return (
-        <nav className="nav-container">
-            <Link to="/">
-                <h1 className="nav-item">Recipes App</h1>
+        <nav className={classes.navContainer}>
+            <Link className={classes.link} to="/">
+                <h1 className={classes.navItem}>Recipes App</h1>
             </Link>
         </nav>
     )

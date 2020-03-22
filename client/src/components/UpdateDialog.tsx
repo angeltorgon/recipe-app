@@ -12,37 +12,10 @@ import axios from 'axios';
 // COMPONENTS
 import IngredientInput from './IngredientInput';
 import InstructionInput from './InstructionInput';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: "100%",
-      margin: '5px',
-      fontSize: '4rem'
-    },
-    form: {
-      padding: '5px',
-      display: 'flex',
-      flexDirection: 'column',
-      width: '500px',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    updateRecipeButton: {
-      margin: "5px"
-    }
-  }),
-);
+import useStyles from './styles/updateDialog';
 
 const DialogComponent = (props: any) => {
   const [open, setOpen] = React.useState(false);
-  console.log(props);
   const [recipe, setRecipe] = React.useState({
     title: props.recipe.title,
     description: props.recipe.description,
@@ -71,13 +44,14 @@ const DialogComponent = (props: any) => {
     handleClose();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     axios.put(`http://localhost:3500/recipes/${props.recipe._id}`, recipe)
     .then((res) => {
       setRecipe({
         title: "",
         description: "",
-        username: localStorage.getItem("username"),
+        username: props.match.params.username,
         ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
         instructions: [{description: ""}] 
       })
@@ -116,7 +90,7 @@ const DialogComponent = (props: any) => {
         <DialogTitle id="alert-dialog-title">{"Submit a recipe below!"}</DialogTitle>
         <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          <form className={classes.form}>
+          <form onSubmit={handleSubmit} className={classes.form}>
             <TextField 
               className={classes.textField} 
               id="outlined-basic" 
@@ -151,7 +125,7 @@ const DialogComponent = (props: any) => {
         </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmit} color="primary">
+          <Button type="submit" color="primary">
             UPDATE
           </Button>
           <Button onClick={handleCancel} color="primary" autoFocus>

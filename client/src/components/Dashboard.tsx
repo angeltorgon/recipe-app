@@ -12,7 +12,8 @@ export default function Dashboard(props: any) {
     const classes = useStyles();
     const [ recipes, setRecipes ] = useState([]);
     const getRecipes = () => {
-        axios.get(`http://localhost:3500/users/${props.match.params.username}/recipes`).then((res: AxiosResponse) => {
+        const { username } = props.match.params;
+        axios.get(`http://localhost:3500/users/${username}/recipes`).then((res: AxiosResponse) => {
             setRecipes(res.data);
         }).catch((err: Error) => {
             console.log(err);

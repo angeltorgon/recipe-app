@@ -62,6 +62,7 @@ export default function DialogComponent(props: any) {
   const [recipe, setRecipe] = React.useState({
     title: "",
     description: "",
+    thumbnailURL: "",
     username: props.match.params.username,
     ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
     instructions: [{description: ""}]
@@ -79,6 +80,7 @@ export default function DialogComponent(props: any) {
     setRecipe({
       title: "",
       description: "",
+      thumbnailURL: "",
       username: props.match.params.username,
       ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
       instructions: [{description: ""}]
@@ -93,6 +95,7 @@ export default function DialogComponent(props: any) {
       setRecipe({
         title: "",
         description: "",
+        thumbnailURL: "",
         username: localStorage.getItem("username"),
         ingredients: [{name: "Example", quantity: 3, unit: "oz"}], 
         instructions: [{description: ""}] 
@@ -147,6 +150,14 @@ export default function DialogComponent(props: any) {
               name="description"
               onChange={changeHandler}
               value={recipe.description}
+              variant="outlined" />
+            <TextField 
+              className={classes.textField} 
+              id="outlined-basic" 
+              label="Thumbnail URL" 
+              name="thumbnailURL"
+              onChange={changeHandler}
+              value={recipe.thumbnailURL}
               variant="outlined" />
             <h3>Enter ingredients below</h3>
             {

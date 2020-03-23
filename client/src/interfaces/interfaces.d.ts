@@ -20,6 +20,7 @@ interface StepInterface {
 interface Recipe {
     title: string;
     description: string;
+    thumbnailURL: string;
     ingredients: IngredientInterface[];
     instructions: StepInterface[];
     _id: number;

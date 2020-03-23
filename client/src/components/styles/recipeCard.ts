@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: "center",
             position: "absolute",
             bottom: "20px"
+        },
+        thumbnailImage: {
+          width: "100%",
+          height: "200",
         }
     })
   )

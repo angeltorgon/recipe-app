@@ -17,10 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: "center",
             flexDirection: "column",
             margin: "5px",
-            justifyContent: "center",
             fontSize: "1.4rem",
             position: "relative",
-            padding: "20px"
         }, 
         buttonContainer: {
             display: "flex",
@@ -32,7 +30,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         thumbnailImage: {
           width: "100%",
-          height: "200",
+          height: "200px",
+          borderRadius: "5px 5px 0 0",
         }
     })
   )

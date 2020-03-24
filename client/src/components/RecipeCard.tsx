@@ -16,7 +16,9 @@ const RecipeCard: React.FC<RecipeCardProps> = (props) => {
     const classes = useStyles();
     return (
         <div className={classes.recipeCardContainer}>
-            <img className={classes.thumbnailImage} alt="recipe in full color" src={props.recipe.thumbnailURL}/>
+            <div className={classes.thumbnailContainer}>
+                <img className={classes.thumbnailImage} alt="recipe in full color" src={props.recipe.thumbnailURL}/>
+            </div>
             <div>
                 <h2>{props.recipe.title}</h2>
                 <p>{props.recipe.description}</p>

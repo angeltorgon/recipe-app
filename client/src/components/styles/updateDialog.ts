@@ -23,7 +23,11 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
     },
     updateRecipeButton: {
-      margin: "5px"
+      margin: "5px",
+      color: "black",
+      fontSize: "14px",
+      border: "1px solid black",
+      backgroundColor: "white"
     }
     })
 )

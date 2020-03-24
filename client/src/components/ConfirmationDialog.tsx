@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: '5px',
       fontSize: '4rem'
     },
+    deleteButton: {
+      fontSize: "14px"
+    }
   }),
 );
 
@@ -47,7 +50,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogInterface> = (props) => {
 
   return (
     <div id="dialog-container">
-    <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+    <Button className={classes.deleteButton} variant="contained" color="secondary" onClick={handleClickOpen}>
       DELETE
     </Button>
     <Dialog

@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme: Theme) =>
           width: "100%",
           height: "200px",
           borderRadius: "5px 5px 0 0",
+          objectFit: "cover",
+        }, 
+        thumbnailContainer: {
+          width: "100%",
         }
     })
   )

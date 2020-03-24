@@ -23,6 +23,7 @@ const DialogComponent = (props: any) => {
     instructions: props.recipe.instructions ? props.recipe.instructions : [{description: ""}],
   });
   const classes = useStyles();
+  console.log("props in update dialog - ", props)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,7 +44,7 @@ const DialogComponent = (props: any) => {
     handleClose();
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.MouseEvent <HTMLButtonElement>) => {
     e.preventDefault();
     axios.put(`http://localhost:3500/recipes/${props.recipe._id}`, recipe)
     .then((res) => {
@@ -55,6 +56,7 @@ const DialogComponent = (props: any) => {
         instructions: [{description: ""}] 
       })
       props.getRecipes();
+      handleClose();
     })
     .catch((err) => {
       console.log("error - ", err)
@@ -88,8 +90,7 @@ const DialogComponent = (props: any) => {
       >
         <DialogTitle id="alert-dialog-title">{"Submit a recipe below!"}</DialogTitle>
         <DialogContent>
-        <DialogContentText id="alert-dialog-description">
-          <form onSubmit={handleSubmit} className={classes.form}>
+          <form className={classes.form}>
             <TextField 
               className={classes.textField} 
               id="outlined-basic" 
@@ -116,15 +117,15 @@ const DialogComponent = (props: any) => {
             <h3>Enter instructions below</h3>
             {
               recipe.instructions.map((instruction: any) => {
-                return <p>{`${instruction.description}`}</p>
+                console.log("instruction in map - ", instruction.description)
+                return <p>{instruction.description}</p>
               })
             }
             <InstructionInput addInstruction={addInstruction}/>
           </form>
-        </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button type="submit" color="primary">
+          <Button onClick={handleSubmit} type="submit" color="primary">
             UPDATE
           </Button>
           <Button onClick={handleCancel} color="primary" autoFocus>

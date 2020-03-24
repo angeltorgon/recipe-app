@@ -36,6 +36,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     addRecipeButton: {
       width: "200px",
+      fontSize: "14px",
+      border: "1px solid green",
+      color: "white",
+      backgroundColor: "green",
+      "&:hover": {
+        backgroundColor: "darkgreen",
+      }
     }
   }),
 );

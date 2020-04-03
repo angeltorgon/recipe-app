@@ -13,7 +13,7 @@ export default function Dashboard(props: any) {
     const [ recipes, setRecipes ] = useState([]);
     const getRecipes = () => {
         const { username } = props.match.params;
-        axios.get(`http://localhost:3500/users/${username}/recipes`).then((res: AxiosResponse) => {
+        axios.get(`${process.env.REACT_APP_ROOT_URL}/users/${username}/recipes`).then((res: AxiosResponse) => {
             setRecipes(res.data);
         }).catch((err: Error) => {
             console.log(err);

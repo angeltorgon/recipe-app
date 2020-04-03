@@ -46,7 +46,7 @@ const DialogComponent = (props: any) => {
 
   const handleSubmit = (e: React.MouseEvent <HTMLButtonElement>) => {
     e.preventDefault();
-    axios.put(`http://localhost:3500/recipes/${props.recipe._id}`, recipe)
+    axios.put(`${process.env.REACT_APP_ROOT_URL}${props.recipe._id}`, recipe)
     .then((res) => {
       setRecipe({
         title: "",

@@ -38,7 +38,7 @@ const ConfirmationDialog: React.FC<ConfirmationDialogInterface> = (props) => {
   };
 
   const handleYes = () => {
-    axios.delete(`http://localhost:3500/recipes/${props.recipeId}`)
+    axios.delete(`${process.env.REACT_APP_ROOT_URL}/recipes/${props.recipeId}`)
     .then((res) => {
       setOpen(false);
       props.getRecipes();

@@ -22,7 +22,7 @@ const Signup = (props: any) => {
     const submitHandler = (e: React.FormEvent) => { 
         e.preventDefault();
         axios
-        .post(`${process.env.REACT_APP_ROOT_URL}`, user)
+        .post(`${process.env.REACT_APP_ROOT_URL}auth/signup`, user)
         .then((res) => {
             setUser({
                 username: "",

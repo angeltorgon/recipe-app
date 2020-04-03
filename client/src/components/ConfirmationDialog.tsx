@@ -5,25 +5,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import axios from 'axios';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: "100%",
-      margin: '5px',
-      fontSize: '4rem'
-    },
-    deleteButton: {
-      fontSize: "14px"
-    }
-  }),
-);
+import useStyles from './styles/confirmationDialog';
 
 const ConfirmationDialog: React.FC<ConfirmationDialogInterface> = (props) => {
   const [open, setOpen] = React.useState(false);

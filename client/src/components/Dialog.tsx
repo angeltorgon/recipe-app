@@ -96,7 +96,7 @@ export default function DialogComponent(props: any) {
   };
 
   const handleSubmit = () => {
-    axios.post(`${process.env.REACT_APP_ROOT_URL}`, recipe)
+    axios.post(`${process.env.REACT_APP_ROOT_URL}recipes`, recipe)
     .then((res: AxiosResponse) => {
       props.getRecipes();
       setRecipe({

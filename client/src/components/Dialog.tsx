@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 // COMPONENTS
 import IngredientInput from './IngredientInput';
@@ -97,7 +97,7 @@ export default function DialogComponent(props: any) {
 
   const handleSubmit = () => {
     axios.post(`${process.env.REACT_APP_ROOT_URL}`, recipe)
-    .then((res) => {
+    .then((res: AxiosResponse) => {
       props.getRecipes();
       setRecipe({
         title: "",

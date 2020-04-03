@@ -22,7 +22,6 @@ const DialogComponent = (props: any) => {
     instructions: props.recipe.instructions ? props.recipe.instructions : [{description: ""}],
   });
   const classes = useStyles();
-  console.log("props in update dialog - ", props)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -45,7 +44,7 @@ const DialogComponent = (props: any) => {
 
   const handleSubmit = (e: React.MouseEvent <HTMLButtonElement>) => {
     e.preventDefault();
-    axios.put(`${process.env.REACT_APP_ROOT_URL}${props.recipe._id}`, recipe)
+    axios.put(`${process.env.REACT_APP_ROOT_URL}/recipes/${props.recipe._id}`, recipe)
     .then((res) => {
       setRecipe({
         title: "",

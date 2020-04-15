@@ -7,8 +7,13 @@ import DialogComponent from './Dialog';
 
 // STYLES
 import useStyles from './styles/dashboard';
+import { RouteComponentProps, RouteProps } from 'react-router-dom';
 
-export default function Dashboard(props: any) {
+interface match {
+    username: string
+}
+
+const Dashboard: React.FC<RouteComponentProps<match>> = (props) => {
     const classes = useStyles();
     const [ recipes, setRecipes ] = useState([]);
     const getRecipes = () => {
@@ -35,3 +40,4 @@ export default function Dashboard(props: any) {
         </div>
     )
 }
+export default Dashboard;

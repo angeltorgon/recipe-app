@@ -9,13 +9,12 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Signup from './components/Signup';
 
-function App(props: any) {
+const App = (props: any) => {
 
   return (
     <div className="App">
       <Nav />
       <Switch >
-        {/* <ProtectedRoute path="/:username" component={Dashboard}/> */}
         <Route path="/login" render={(props) => <Login {...props} />} />
         <Route path="/:username" render={(props) => <Dashboard {...props} />} />
         <Route path="/" render={(props) => <Signup {...props} />} />

@@ -8,7 +8,7 @@ import useStyles from './styles/auth';
 // import './styles/login.scss';
 import { Link } from 'react-router-dom';
 
-const Signup = (props: any) => {
+const Signup: React.FC <any> = (props) => {
     const [ user, setUser ] = useState({
         username: "",
         password: ""

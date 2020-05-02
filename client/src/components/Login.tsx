@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { makeStyles, Theme, createStyles, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+import Loader from 'react-loader-spinner'
 import useStyles from './styles/auth';
 
 // STYLES
@@ -73,7 +74,16 @@ function Login(props: any) {
                         variant="outlined"
                         />
                     <button className={classes.button} type="submit">
-                        Log In
+                        {
+                            isLoading ?  <Loader
+                            type="TailSpin"
+                            color="white"
+                            height={20}
+                            width={20}
+                            timeout={3000} //3 secs
+                    
+                         /> : "Log In"
+                        }
                     </button>
                     <p>Not a user? <Link to="/">Sign Up</Link></p>
                 </form>

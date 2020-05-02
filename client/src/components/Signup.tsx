@@ -13,7 +13,9 @@ const Signup = (props: any) => {
         password: ""
     });
     const classes = useStyles();
-    const [ error, setError ] = useState(false);
+    const [ error, setError ] = useState<boolean>(false);
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
+
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement> ) => { 
         e.preventDefault();
         setUser({...user, [e.target.name]: e.target.value});
@@ -21,20 +23,25 @@ const Signup = (props: any) => {
 
     const submitHandler = (e: React.FormEvent) => { 
         e.preventDefault();
-        axios
-        .post(`${process.env.REACT_APP_ROOT_URL}auth/signup`, user)
-        .then((res) => {
-            setUser({
-                username: "",
-                password: ""
+
+        if (user.username.length > 0 && user.password.length > 0) {
+            axios
+            .post(`${process.env.REACT_APP_ROOT_URL}auth/signup`, user)
+            .then((res) => {
+                setUser({
+                    username: "",
+                    password: ""
+                })
+                setError(false);
+                props.history.push(`/${user.username}`);
             })
-            setError(false);
-            props.history.push(`/${user.username}`);
-        })
-        .catch((err) => {
-            setError(true);
-            console.log(err);
-        })
+            .catch((err) => {
+                setError(true);
+                console.log(err);
+            })
+        } else {
+            setError(true)
+        }
     };
 
     return (

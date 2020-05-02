@@ -6,65 +6,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 // COMPONENTS
 import IngredientInput from './IngredientInput';
 import InstructionInput from './InstructionInput';
+import useStyles from './styles/dialog';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: "100%",
-      margin: '5px',
-      fontSize: '4rem'
-    },
-    form: {
-      padding: '5px',
-      display: 'flex',
-      flexDirection: 'column',
-      width: '500px',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    addRecipeButton: {
-      width: "200px",
-      fontSize: "14px",
-      border: "1px solid green",
-      color: "white",
-      backgroundColor: "green",
-      "&:hover": {
-        backgroundColor: "darkgreen",
-      }
-    }
-  }),
-);
-
-interface IngredientInterface {
-  name: string; 
-  quantity: number; 
-  unit: string;
-}
-
-interface StepInterface {
-  description: string; 
-}
-
-interface Recipe {
-    title: string;
-    description: string;
-    ingredients: IngredientInterface[];
-    instructions: StepInterface[]
-}
-
-export default function DialogComponent(props: any) {
+const DialogComponent: React.FC<any> = (props) => {
   const [open, setOpen] = React.useState(false);
   const [recipe, setRecipe] = React.useState({
     title: "",
@@ -97,7 +46,7 @@ export default function DialogComponent(props: any) {
 
   const handleSubmit = () => {
     axios.post(`${process.env.REACT_APP_ROOT_URL}recipes`, recipe)
-    .then((res: AxiosResponse) => {
+    .then((res) => {
       props.getRecipes();
       setRecipe({
         title: "",
@@ -195,3 +144,5 @@ export default function DialogComponent(props: any) {
   </div>
   );
 }
+
+export default DialogComponent;

@@ -17,6 +17,10 @@ interface StepInterface {
   description: string; 
 }
 
+interface match {
+    username: string
+}
+
 interface Recipe {
     title: string;
     description: string;

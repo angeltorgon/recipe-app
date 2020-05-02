@@ -3,12 +3,13 @@ import axios, { AxiosResponse } from 'axios';
 
 // COMPONENTS
 import RecipeCard from './RecipeCard';
-import DialogComponent from './Dialog';
+import Dialog from './Dialog';
+import { RouteComponentProps } from 'react-router-dom';
 
 // STYLES
 import useStyles from './styles/dashboard';
 
-export default function Dashboard(props: any) {
+const Dashboard: React.FC<RouteComponentProps<match>> = (props) => {
     const classes = useStyles();
     const [ recipes, setRecipes ] = useState([]);
     const getRecipes = () => {
@@ -26,7 +27,7 @@ export default function Dashboard(props: any) {
 
     return (
         <div className={classes.dashboardContainer}>
-            <DialogComponent {...props} getRecipes={getRecipes}/>
+            <Dialog {...props} getRecipes={getRecipes}/>
             <div className={classes.recipeCards}>
                 { recipes.map((recipe: Recipe) => {
                 return <RecipeCard {...props} getRecipes={getRecipes} recipe={recipe}/>
@@ -35,3 +36,4 @@ export default function Dashboard(props: any) {
         </div>
     )
 }
+export default Dashboard;

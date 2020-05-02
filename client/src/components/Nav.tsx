@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 // STYLES
 import useStyles from "./styles/nav"
 
-const Nav: React.FC = () => {
+const Nav: React.FC<any> = () => {
     const classes = useStyles();
 
     return (

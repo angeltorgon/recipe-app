@@ -12,7 +12,8 @@ function Login(props: any) {
         username: "",
         password: ""
     });
-    const [ error, setError ] = useState(false);
+    const [ error, setError ] = useState<boolean>(false);
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
     const classes = useStyles();
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement> ) => { 
@@ -22,20 +23,27 @@ function Login(props: any) {
 
     const submitHandler = (e: React.FormEvent) => { 
         e.preventDefault();
-        axios
-        .post(`${process.env.REACT_APP_ROOT_URL}auth/login`, user)
-        .then((res) => {
-            setUser({
-                username: "",
-                password: ""
+
+        if (user.username.length > 0 && user.password.length > 0) {
+            setIsLoading(true)
+            axios
+            .post(`${process.env.REACT_APP_ROOT_URL}auth/login`, user)
+            .then((res) => {
+                setUser({
+                    username: "",
+                    password: ""
+                })
+                setIsLoading(true)
+                setError(false);
+                props.history.push(`/${user.username}`);
             })
-            setError(false);
-            props.history.push(`/${user.username}`);
-        })
-        .catch((err) => {
-            console.log(err);
-            setError(true);
-        })
+            .catch((err) => {
+                console.log(err);
+                setError(true);
+            })
+        } else {
+            setError(true)
+        }
     };
 
     return (
@@ -64,7 +72,9 @@ function Login(props: any) {
                         name="password" 
                         variant="outlined"
                         />
-                    <button className={classes.button} type="submit">Log In</button>
+                    <button className={classes.button} type="submit">
+                        Log In
+                    </button>
                     <p>Not a user? <Link to="/">Sign Up</Link></p>
                 </form>
             </div>

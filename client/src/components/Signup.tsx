@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Loader from 'react-loader-spinner'
 import axios from 'axios';
 import {  TextField } from '@material-ui/core';
 import useStyles from './styles/auth';
@@ -25,6 +26,7 @@ const Signup = (props: any) => {
         e.preventDefault();
 
         if (user.username.length > 0 && user.password.length > 0) {
+            setIsLoading(true)
             axios
             .post(`${process.env.REACT_APP_ROOT_URL}auth/signup`, user)
             .then((res) => {
@@ -33,10 +35,12 @@ const Signup = (props: any) => {
                     password: ""
                 })
                 setError(false);
+                setIsLoading(false)
                 props.history.push(`/${user.username}`);
             })
             .catch((err) => {
                 setError(true);
+                setIsLoading(false)
                 console.log(err);
             })
         } else {
@@ -70,7 +74,18 @@ const Signup = (props: any) => {
                         name="password" 
                         variant="outlined"
                         />
-                    <button className={classes.button} type="submit">Sign Up</button>
+                    <button className={classes.button} type="submit">
+                        {
+                            isLoading ?  <Loader
+                            type="TailSpin"
+                            color="white"
+                            height={20}
+                            width={20}
+                            timeout={3000} //3 secs
+                    
+                         /> : "Sign Up"
+                        }
+                    </button>
                     <p>Already a user? <Link to="/login">Log In</Link></p>
                 </form>
             </div>

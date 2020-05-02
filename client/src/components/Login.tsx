@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { TextField } from '@material-ui/core';
 import Loader from 'react-loader-spinner'
@@ -41,6 +41,7 @@ function Login(props: any) {
             .catch((err) => {
                 console.log(err);
                 setError(true);
+                setIsLoading(false)
             })
         } else {
             setError(true)

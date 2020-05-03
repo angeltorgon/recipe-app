@@ -14,7 +14,7 @@ const Signup: React.FC <any> = (props) => {
         password: ""
     });
     const classes = useStyles();
-    const [ error, setError ] = useState<boolean>(false);
+    const [ error, setError ] = useState<string>("");
     const [ isLoading, setIsLoading ] = useState<boolean>(false);
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement> ) => { 
@@ -34,17 +34,17 @@ const Signup: React.FC <any> = (props) => {
                     username: "",
                     password: ""
                 })
-                setError(false);
+                setError("");
                 setIsLoading(false)
                 props.history.push(`/${user.username}`);
             })
             .catch((err) => {
-                setError(true);
+                setError("There was an error. Try again.");
                 setIsLoading(false)
                 console.log(err);
             })
         } else {
-            setError(true)
+            setError("Provide email and password")
         }
     };
 
@@ -53,7 +53,7 @@ const Signup: React.FC <any> = (props) => {
             <div className={classes.loginCard}>
                 <form className={classes.form} onSubmit={submitHandler}>
                     <h2>Sign Up!</h2>
-                    {error ? <p className={classes.error}>There was an error.</p> : null}
+                    {error ? <p className={classes.error}>{error}</p> : null}
                     <TextField 
                         type="text" 
                         value={user.username} 
